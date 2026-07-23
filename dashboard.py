@@ -21,6 +21,7 @@ from signals import (
     recent_analyst_actions, analyst_summary, latest_short_interest, top_holders,
     social_snapshot, gdelt_spike, attention_series, ticker_asymmetry,
     macro_snapshot, macro_news, upcoming_conferences,
+    financial_summary, financials as financials_q, fmt_mag,
 )
 from config import ASYM_MIN_ATTRACTIVE
 
@@ -85,9 +86,10 @@ def style_snapshot(df):
     )
 
 
-tab_overview, tab_company, tab_insiders, tab_sentiment, tab_trade, tab_history, tab_about = st.tabs(
-    ["📊 Overview", "🏢 Company detail", "👤 Insiders", "🧠 Sentiment", "🚢 Trade flows",
-     "🕘 Alert history", "ℹ️ About"]
+(tab_overview, tab_company, tab_financials, tab_insiders, tab_sentiment,
+ tab_trade, tab_history, tab_about) = st.tabs(
+    ["📊 Overview", "🏢 Company detail", "💰 Financials", "👤 Insiders", "🧠 Sentiment",
+     "🚢 Trade flows", "🕘 Alert history", "ℹ️ About"]
 )
 
 # ══════════════════════════════ OVERVIEW ══════════════════════════════
@@ -326,6 +328,45 @@ with tab_insiders:
             tdf.style.format({"Shares": "{:,.0f}", "Price": "{:.2f}", "Value $": "{:,.0f}"}),
             width="stretch", hide_index=True,
         )
+
+# ══════════════════════════════ FINANCIALS ══════════════════════════════
+with tab_financials:
+    st.subheader("💰 Financials — latest reported quarter")
+    st.caption("Absolute figures are in each company's reporting currency (TSM=TWD, SIVE=SEK, "
+               "SOI=EUR); margins and growth are currency-neutral. Full analyst commentary "
+               "is in your private daily brief.")
+    frows = [financial_summary(conn, t) for t in TICKERS]
+    frows = [f for f in frows if f]
+    if frows:
+        fdf = pd.DataFrame([{
+            "Ticker": f["ticker"], "Qtr": f["period"][:7],
+            "Revenue": fmt_mag(f["revenue"]), "Rev YoY %": f["rev_yoy"],
+            "Gross %": f["gross_margin"], "Op %": f["op_margin"], "Net %": f["net_margin"],
+            "FCF": fmt_mag(f["fcf"]) if f["fcf"] is not None else "—",
+            "Net cash": fmt_mag(f["net_cash"]) if f["net_cash"] is not None else "—",
+            "Shares YoY %": f["shares_yoy"],
+        } for f in frows])
+        st.dataframe(
+            fdf.style.format({"Rev YoY %": "{:+.0f}", "Gross %": "{:.0f}", "Op %": "{:.0f}",
+                              "Net %": "{:.0f}", "Shares YoY %": "{:+.1f}"}, na_rep="—")
+            .map(lambda v: f"color: {DELTA_UP}" if isinstance(v, float) and v > 0
+                 else (f"color: {DELTA_DOWN}" if isinstance(v, float) and v < 0 else ""),
+                 subset=["Rev YoY %"])
+            .map(lambda v: f"color: {DELTA_DOWN}" if isinstance(v, float) and v > 2 else "", subset=["Shares YoY %"]),
+            width="stretch", hide_index=True, height=560)
+        st.caption("Shares YoY highlighted red above +2% (dilution).")
+
+        st.markdown("#### Revenue trend")
+        ft = st.selectbox("Company", [f["ticker"] for f in frows], key="fin_ticker")
+        qs = financials_q(conn, ft, limit=5)
+        if qs:
+            qdf = pd.DataFrame([{"period": q["period"], "revenue": q["revenue"]} for q in reversed(qs)])
+            fig = go.Figure(go.Bar(x=qdf["period"], y=qdf["revenue"], marker_color=SLOTS[0], marker_line_width=0,
+                                   hovertemplate="%{y:,.0f}<extra></extra>"))
+            fig.update_layout(**layout(), height=300, yaxis_title="Revenue (reporting currency)")
+            st.plotly_chart(fig, config={"displayModeBar": False})
+    else:
+        st.info("No financials stored yet — run run_daily.py.")
 
 # ══════════════════════════════ SENTIMENT ══════════════════════════════
 with tab_sentiment:

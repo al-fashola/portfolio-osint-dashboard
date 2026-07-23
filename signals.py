@@ -344,6 +344,60 @@ def macro_news(conn, hours: int = 48, limit: int = 8):
     ).fetchall()
 
 
+def financials(conn, ticker: str, limit: int = 5):
+    """Last `limit` quarters (newest first) of stored financial statements."""
+    return conn.execute(
+        "SELECT * FROM financials WHERE ticker=? ORDER BY period DESC LIMIT ?", (ticker, limit)
+    ).fetchall()
+
+
+def financial_summary(conn, ticker: str) -> dict | None:
+    """Latest quarter + margins + growth (YoY vs same quarter last year, QoQ),
+    FCF, net cash/debt, and share-count change — the numbers an analyst reads
+    first. None when no financials stored."""
+    qs = financials(conn, ticker, limit=6)
+    if not qs:
+        return None
+    q = qs[0]
+    def pct(cur, prev):
+        return (cur / prev - 1) * 100 if cur is not None and prev else None
+    def margin(numer):
+        return (numer / q["revenue"] * 100) if numer is not None and q["revenue"] else None
+    yoy = qs[4] if len(qs) > 4 else None   # 4 quarters back = same quarter last year
+    prev = qs[1] if len(qs) > 1 else None
+    net_cash = None
+    if q["cash"] is not None and q["total_debt"] is not None:
+        net_cash = q["cash"] - q["total_debt"]
+    return {
+        "ticker": ticker, "period": q["period"],
+        "revenue": q["revenue"], "net_income": q["net_income"], "eps": q["diluted_eps"],
+        "fcf": q["fcf"], "cash": q["cash"], "debt": q["total_debt"], "net_cash": net_cash,
+        "gross_margin": margin(q["gross_profit"]), "op_margin": margin(q["operating_income"]),
+        "net_margin": margin(q["net_income"]), "fcf_margin": margin(q["fcf"]),
+        "rev_yoy": pct(q["revenue"], yoy["revenue"]) if yoy else None,
+        "rev_qoq": pct(q["revenue"], prev["revenue"]) if prev else None,
+        "ni_yoy": pct(q["net_income"], yoy["net_income"]) if yoy else None,
+        "shares_yoy": pct(q["shares"], yoy["shares"]) if yoy else None,  # +ve = dilution
+    }
+
+
+_FINANCIALS_DIR = Path(__file__).parent / "financials"
+
+
+def financial_note(ticker: str) -> str | None:
+    """Private analyst-style narrative (markdown) for a ticker, or None. Lives
+    in financials/<TICKER>.md so it never reaches the public dashboard repo."""
+    f = _FINANCIALS_DIR / f"{ticker.replace('.', '_')}.md"
+    return f.read_text() if f.exists() else None
+
+
+def tickers_with_notes() -> list[str]:
+    if not _FINANCIALS_DIR.exists():
+        return []
+    return sorted(p.stem.replace("_", ".") for p in _FINANCIALS_DIR.glob("*.md")
+                  if p.name != "_TEMPLATE.md")
+
+
 def fresh_news(conn, ticker: str, hours: int = NEWS_LOOKBACK_HOURS, limit: int = NEWS_PER_TICKER):
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     return conn.execute(
@@ -479,9 +533,25 @@ def build_alerts(conn) -> list[dict]:
 
 
 def fmt_usd(v: float) -> str:
-    """$3.7B / $412M / $122k depending on magnitude."""
-    if v >= 1e9:
-        return f"${v/1e9:,.1f}B"
-    if v >= 1e6:
-        return f"${v/1e6:,.0f}M"
-    return f"${v/1e3:,.0f}k"
+    """$3.7B / -$412M / $122k depending on magnitude (handles negatives)."""
+    sign = "-" if v < 0 else ""
+    a = abs(v)
+    if a >= 1e9:
+        return f"{sign}${a/1e9:,.1f}B"
+    if a >= 1e6:
+        return f"{sign}${a/1e6:,.0f}M"
+    return f"{sign}${a/1e3:,.0f}k"
+
+
+def fmt_mag(v: float) -> str:
+    """Currency-neutral magnitude (no symbol): 3.7B / -412M / 122k. For mixed-
+    currency financials where a $ sign would be wrong (TSM=TWD, SIVE.ST=SEK)."""
+    if v is None:
+        return "—"
+    sign = "-" if v < 0 else ""
+    a = abs(v)
+    if a >= 1e9:
+        return f"{sign}{a/1e9:,.1f}B"
+    if a >= 1e6:
+        return f"{sign}{a/1e6:,.0f}M"
+    return f"{sign}{a/1e3:,.0f}k"

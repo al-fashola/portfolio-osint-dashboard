@@ -116,6 +116,23 @@ progress often surfaces there before it hits a filing. Read a conference as a
 *scheduled volatility window*, like earnings: it tells you when to pay
 attention, not what will happen.
 
+### 💰 Financials & the analyst read
+The pipeline pulls each company's last five quarters of financial statements —
+revenue, margins, net income, EPS, free cash flow, cash, debt, and share count
+— and computes the growth and margin trajectory. The **Financials tab** (and
+the digest table) shows the numbers a fundamentals analyst reads first; the
+tells to watch are *accelerating vs decelerating* revenue, *margin direction*,
+whether FCF is real, net cash vs net debt, and **share count YoY** (rising =
+dilution, the quiet killer). Absolute figures are in each company's reporting
+currency (TSM in TWD, Sivers in SEK), so lean on the currency-neutral margins
+and growth rates for comparison.
+
+Alongside the numbers, the morning routine writes a short **hedge-fund-analyst
+narrative** per company — what the financials actually *say*, the one line item
+that matters, and the read-through to your thesis. Those notes are **private**
+(they live only in the source repo and your daily brief, never the public
+dashboard), because they're your analytical view, like your theses.
+
 ### 🌍 Macro & market considerations
 Your holdings don't trade in a vacuum — the macro strip (S&P, Nasdaq, SOX
 semiconductor index, VIX, 10Y yield, USD/KRW) answers "is today's move my

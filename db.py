@@ -152,6 +152,26 @@ CREATE TABLE IF NOT EXISTS attention (
     score  REAL,                       -- Google Trends 0-100
     PRIMARY KEY (ticker, date)
 );
+
+CREATE TABLE IF NOT EXISTS financials (
+    ticker           TEXT NOT NULL,
+    period           TEXT NOT NULL,    -- quarter end, YYYY-MM-DD
+    revenue          REAL,
+    gross_profit     REAL,
+    operating_income REAL,
+    net_income       REAL,
+    diluted_eps      REAL,
+    operating_cf     REAL,
+    capex            REAL,
+    fcf              REAL,
+    cash             REAL,
+    total_debt       REAL,
+    shares           REAL,
+    PRIMARY KEY (ticker, period)
+);
+-- Note: the analyst-style narrative is intentionally NOT stored in the DB (which
+-- is mirrored to the public dashboard repo). It lives as private markdown in
+-- financials/<TICKER>.md, read by the digest/brief only.
 """
 
 
@@ -282,6 +302,15 @@ def upsert_news_metrics(conn, rows):
 def upsert_attention(conn, rows):
     conn.executemany(
         "INSERT OR REPLACE INTO attention (ticker, date, score) VALUES (?,?,?)", rows)
+    conn.commit()
+
+
+def upsert_financials(conn, rows):
+    conn.executemany(
+        "INSERT OR REPLACE INTO financials "
+        "(ticker, period, revenue, gross_profit, operating_income, net_income, "
+        " diluted_eps, operating_cf, capex, fcf, cash, total_debt, shares) "
+        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
     conn.commit()
 
 
