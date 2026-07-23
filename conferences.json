@@ -1,0 +1,85 @@
+{
+  "_README": "Industry events / semiconductor conferences that can move watchlist names via product announcements, roadmap disclosures, or competitive read-through. The morning routine (CLAUDE.md) refreshes dates and 'watch' notes via web search each run and adds newly-announced events. 'tickers' = watchlist symbols with direct or read-through exposure. 'confidence': confirmed (dates verified) | approx (typical timing, verify) | rumored. Dates are ISO YYYY-MM-DD, event-local. Not investment advice.",
+  "events": [
+    {
+      "name": "AMD Advancing AI 2026",
+      "start": "2026-07-22",
+      "end": "2026-07-23",
+      "location": "San Francisco — Moscone Center",
+      "tickers": ["NVDA", "AVGO", "MRVL", "TSM"],
+      "watch": "UPDATED 2026-07-23 (morning scan): CONFIRMED via AMD's own IR press release (dated 2026-07-22) — no longer embargoed/rumored. AMD and Anthropic announced a strategic partnership to deploy up to 2GW of AMD Instinct MI450 Series GPUs in Helios rack-scale systems (first 1GW from H1 2027), backed by an AMD strategic equity investment of up to $5B in Anthropic, plus a multi-year engineering collaboration using Claude to optimize workloads for Instinct GPUs and accelerate ROCm. The deal was announced a day ahead of Lisa Su's Day 2 keynote (Jul 23, 9:30am PT) — watch that keynote for further detail on the MI450/MI430X CDNA 5 formal launch. Day 1 (Jul 22) launched EPYC 'Venice' Zen 6 CPUs (first HPC processor on TSMC 2nm, up to 256 cores) and detailed the MI455X (CDNA 5) powering the Helios rack at 31 TB HBM4. Press framing is 'Helios vs Nvidia Vera Rubin': memory-bandwidth edge claimed, training performance still seen as trailing Rubin. Competitive read-through for NVDA (accelerator roadmap vs Rubin, and a hyperscale-AI-lab customer now confirmed dual-sourcing); interconnect/networking read-through for AVGO & MRVL; volume read-through for TSM. AMD itself is not on the watchlist — relevance is entirely competitive/supply-chain read-through.",
+      "source": "https://ir.amd.com/news-events/press-releases/detail/1292/amd-and-anthropic-announce-strategic-partnership-to-deploy-up-to-2-gigawatts-of-amd-instinct-mi450-series-gpus",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "Hot Chips 2026 (IEEE Symposium on High-Performance Chips)",
+      "start": "2026-08-23",
+      "end": "2026-08-25",
+      "location": "Palo Alto — Stanford",
+      "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "GFS"],
+      "watch": "Deep-dive architecture disclosures from the major silicon vendors — often first technical detail on next-gen accelerators, custom ASICs, chiplet/packaging and interconnect. Read-through for the whole compute complex and the foundries (TSM, GFS) that build it.",
+      "source": "https://hotchips.org/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "AI Infra Summit 2026",
+      "start": "2026-09-15",
+      "end": "2026-09-17",
+      "location": "Santa Clara Convention Center, CA",
+      "tickers": ["NVDA", "AVGO", "MRVL", "META", "WULF"],
+      "watch": "Newly identified during the 2026-07-22 conference refresh. 8,000+ engineers/technical leaders across 5 tracks: Compute, Data Movement, Physical AI, Data & Models, AI Data Center. Broader and more technical-buildout-focused than a single-vendor product launch — read-through for the whole compute/networking/datacenter-infra complex (NVDA, AVGO, MRVL) and for WULF's HPC-conversion and META's capex narratives via the AI Data Center track. Falls 5 days before ECOC 2026, inside the same September AI-infra catalyst window.",
+      "source": "https://www.ai-infra-summit.com/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "ECOC 2026 (European Conference on Optical Communication)",
+      "start": "2026-09-20",
+      "end": "2026-09-24",
+      "location": "Málaga, Spain",
+      "tickers": ["SIVE.ST", "SIVEF", "SOI.PA", "SLOIF", "MRVL", "AVGO"],
+      "watch": "THE optics event for the small-caps: CPO (co-packaged optics), 800G/1.6T transceivers, EML/DFB laser and InP-substrate progress. Direct catalyst window for Sivers (CPO lasers) and Soitec (photonics substrates); DSP/optics read-through for MRVL & AVGO. Lumentum/Coherent disclosures here reset the whole InP supply picture.",
+      "source": "https://www.ecocexhibition.com/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "OCP Global Summit 2026 (Open Compute Project)",
+      "start": "2026-10-12",
+      "end": "2026-10-15",
+      "location": "San Jose — McEnery Convention Center",
+      "tickers": ["NVDA", "AVGO", "MRVL", "META", "WULF"],
+      "watch": "Hyperscaler datacenter standards — rack power/cooling, networking fabrics, custom silicon, optics adoption. Meta is a core OCP driver (capex read-through); networking/optics read-through for AVGO & MRVL; datacenter-infrastructure read-through for WULF's HPC-conversion thesis.",
+      "source": "https://www.opencompute.org/summit/global-summit",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "SEMICON West 2026",
+      "start": "2026-10-13",
+      "end": "2026-10-15",
+      "location": "San Francisco — Moscone Center",
+      "tickers": ["TSM", "GFS"],
+      "watch": "Dates confirmed 2026-07-22 via the official SEMI organizer site (Pre-Show Day Mon Oct 12, show floor Oct 13-15). Fab-equipment/WFE industry event, almost exactly overlapping the existing OCP Global Summit (Oct 12-15, San Jose) — same catalyst week. Relevant to TSM (leading-edge capacity/pricing commentary) and GFS (specialty-foundry, onshoring/CHIPS Act positioning).",
+      "source": "https://www.semiconwest.org/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "CES 2027",
+      "start": "2027-01-06",
+      "end": "2027-01-09",
+      "location": "Las Vegas",
+      "tickers": ["NVDA", "AVGO", "MP1.AX"],
+      "watch": "Consumer + edge-AI keynotes; NVIDIA typically opens with a roadmap/keynote. Broad AI-infrastructure tone-setter for the year. 60th-anniversary edition.",
+      "source": "https://www.ces.tech/plan-your-visit/dates-and-hours/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "NVIDIA GTC 2027",
+      "start": "2027-03-14",
+      "end": "2027-03-18",
+      "location": "San Jose — McEnery Convention Center",
+      "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "SIVE.ST", "SIVEF", "SOI.PA", "SLOIF"],
+      "watch": "NVIDIA's flagship — next-gen architecture (post-Rubin) roadmap, networking (NVLink/Spectrum), and increasingly CPO/optics partners. The single biggest AI-infra catalyst of the year; read-through across the entire watchlist, especially the optics chain if NVDA advances co-packaged optics.",
+      "source": "https://www.nvidia.com/gtc/",
+      "confidence": "confirmed"
+    }
+  ]
+}
