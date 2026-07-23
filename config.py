@@ -33,6 +33,7 @@ TICKERS = {
     "AVGO":     {"name": "Broadcom",                          "query": '"Broadcom"',              "us_ticker": "AVGO"},
     "TSM":      {"name": "Taiwan Semiconductor Manufacturing", "query": '"Taiwan Semiconductor"',  "us_ticker": "TSM"},
     "SPCX":     {"name": "Space Exploration Technologies (SpaceX)", "query": '"SpaceX"',           "us_ticker": "SPCX"},
+    "INTC":     {"name": "Intel",                            "query": '"Intel"',                 "us_ticker": "INTC"},
 }
 
 # Macro context instruments — tracked for the digest/dashboard "considerations"
