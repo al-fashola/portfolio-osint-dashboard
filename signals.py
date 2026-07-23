@@ -185,18 +185,22 @@ def load_valuations() -> dict:
     """User-defined bull/bear scenario values ({ticker: {bull, bear, note}}).
 
     Resolution order:
-      1. Streamlit secret `valuations_json` (a JSON string) — used by the public
-         hosted dashboard so the values never live in that public repo.
-      2. Local valuations.json file (private repo / local runs).
+      1. Encrypted blob `valuations.enc` + Streamlit secret `valuations_key` —
+         the hosted public dashboard. Values live as ciphertext in the repo and
+         are decrypted at runtime; the key secret is static (never changes).
+      2. Local `valuations.json` file (private repo / local runs).
     """
     try:
         import streamlit as st  # only present in the dashboard runtime
-        raw = st.secrets.get("valuations_json") if hasattr(st, "secrets") else None
-        if raw:
-            data = json.loads(raw)
-            return {k: v for k, v in data.items() if not k.startswith("_")}
+        key = st.secrets.get("valuations_key") if hasattr(st, "secrets") else None
+        enc = _VALUATIONS_FILE.parent / "valuations.enc"
+        if key and enc.exists():
+            import crypto_valuations
+            data = crypto_valuations.decrypt(enc, key)
+            if data:
+                return {k: v for k, v in data.items() if not k.startswith("_")}
     except Exception:
-        pass  # not running under Streamlit, or no secret set — fall through
+        pass  # not on Streamlit, or no key/blob — fall through to the file
     if not _VALUATIONS_FILE.exists():
         return {}
     data = json.loads(_VALUATIONS_FILE.read_text())
