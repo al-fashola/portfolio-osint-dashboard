@@ -2,22 +2,12 @@
   "_README": "Industry events / semiconductor conferences that can move watchlist names via product announcements, roadmap disclosures, or competitive read-through. The morning routine (CLAUDE.md) refreshes dates and 'watch' notes via web search each run and adds newly-announced events. 'tickers' = watchlist symbols with direct or read-through exposure. 'confidence': confirmed (dates verified) | approx (typical timing, verify) | rumored. Dates are ISO YYYY-MM-DD, event-local. Not investment advice.",
   "events": [
     {
-      "name": "AMD Advancing AI 2026",
-      "start": "2026-07-22",
-      "end": "2026-07-23",
-      "location": "San Francisco — Moscone Center",
-      "tickers": ["NVDA", "AVGO", "MRVL", "TSM"],
-      "watch": "UPDATED 2026-07-23 (midday scan): Lisa Su's Day 2 keynote (9:30am PT) delivered — event now CONCLUDED. Confirmed: Meta committed up to 6GW of AMD capacity (MI450/Helios/EPYC Venice) and OpenAI committed a separate 6GW across multiple Instinct generations (on top of the Anthropic 2GW deal announced Day 1) — 12GW combined Meta+OpenAI, deploying through 2026-2027. Microsoft Azure and Oracle also named as early Helios customers; AMD claims 8 of the top 10 AI companies now run workloads on Instinct GPUs. Helios racks priced at $5-5.5M; MI400/MI455X family in volume production, 31TB HBM4 per rack vs Vera Rubin's 20.7TB (memory-bandwidth edge claimed, training throughput still seen trailing Rubin). Day 1 (Jul 22) launched EPYC 'Venice' Zen 6 CPUs (first HPC processor on TSMC 2nm, up to 256 cores). Competitive read-through for NVDA (three major AI labs now confirmed dual-sourcing at gigawatt scale — reads as share-of-incremental-growth so far, not displacement of existing NVDA sockets); interconnect/networking read-through for AVGO & MRVL; volume read-through for TSM. AMD itself is not on the watchlist — relevance is entirely competitive/supply-chain read-through.",
-      "source": "https://www.techtimes.com/articles/321257/20260722/amd-advancing-ai-2026-opens-zen-6-venice-helios-open-ai-rack-bet.htm",
-      "confidence": "confirmed"
-    },
-    {
       "name": "Hot Chips 2026 (IEEE Symposium on High-Performance Chips)",
       "start": "2026-08-23",
       "end": "2026-08-25",
-      "location": "Palo Alto — Stanford",
+      "location": "Palo Alto — Stanford (Memorial Auditorium)",
       "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "GFS"],
-      "watch": "Deep-dive architecture disclosures from the major silicon vendors — often first technical detail on next-gen accelerators, custom ASICs, chiplet/packaging and interconnect. Read-through for the whole compute complex and the foundries (TSM, GFS) that build it.",
+      "watch": "Dates/venue re-confirmed 2026-07-24 (Memorial Auditorium, Stanford; hybrid virtual/in-person). Chip architects from NVIDIA, AMD, Intel, IBM, Arm and Fujitsu present real silicon behind AI training/inference — GPU platforms, AI accelerators, memory, networking and interconnect — usually months before products ship. No specific speaker lineup/agenda published yet as of this scan. Deep-dive architecture disclosures from the major silicon vendors — often first technical detail on next-gen accelerators, custom ASICs, chiplet/packaging and interconnect. Read-through for the whole compute complex and the foundries (TSM, GFS) that build it.",
       "source": "https://hotchips.org/",
       "confidence": "confirmed"
     },
