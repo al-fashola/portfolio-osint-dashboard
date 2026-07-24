@@ -154,6 +154,33 @@ with tab_overview:
                           height=420, showlegend=False)
         st.plotly_chart(fig, config={"displayModeBar": False})
 
+    st.subheader("🗣️ Analyst sentiment — sourced stances")
+    st.caption(
+        "What the analysts you follow are actually saying, attributed and dated. These are "
+        "summaries of other people's published opinions, not recommendations — and tickers "
+        "with no coverage among your follows say so rather than carrying an invented view."
+    )
+    try:
+        from signals import stances as _stances, STANCE_ORDER
+        _sts = _stances()
+    except Exception:
+        _sts = {}
+    if not _sts:
+        st.info("No stances available (valuations/stance data not loaded).")
+    else:
+        _emoji = {"Bullish": "🟢", "Constructive": "🟢", "Contested": "🟡",
+                  "Cautious": "🔴", "No fresh coverage": "⚪", "No follow coverage": "⚪"}
+        _rank = {s: i for i, s in enumerate(STANCE_ORDER)}
+        _counts = {}
+        for s in _sts.values():
+            _counts[s["stance"]] = _counts.get(s["stance"], 0) + 1
+        st.write(" · ".join(f"{_emoji.get(k,'')} **{k}** {v}"
+                            for k, v in sorted(_counts.items(), key=lambda kv: _rank.get(kv[0], 9))))
+        for t, s in sorted(_sts.items(), key=lambda kv: (_rank.get(kv[1]["stance"], 9), kv[0])):
+            with st.expander(f"{_emoji.get(s['stance'],'')} {t} — {s['stance']}"):
+                st.markdown(s["note"])
+                st.caption(f"{s['src']} · as of {s['as_of']}")
+
     st.subheader("⚖️ Asymmetry — (bull − price) ÷ (price − bear)")
     have_own = [a for a in asyms.values() if a["mine"]["status"] != "undefined"
                 or a["bull"] is not None or a["bear"] is not None]

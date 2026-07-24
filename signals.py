@@ -207,6 +207,31 @@ def load_valuations() -> dict:
     return {k: v for k, v in data.items() if not k.startswith("_")}
 
 
+#: display order / severity for the analyst-sourced stance labels
+STANCE_ORDER = ["Bullish", "Constructive", "Contested", "Cautious",
+                "No fresh coverage", "No follow coverage"]
+
+
+def stances() -> dict:
+    """{ticker: {stance, note, src, as_of}} — sentiment synthesized from the
+    named analysts in sources/analysts.md (see each theses/<T>.md evidence log).
+
+    These are summaries of OTHER PEOPLE's published opinions, dated and
+    attributed — not recommendations. Tickers with no follow coverage say so
+    rather than carrying an invented view.
+    """
+    out = {}
+    for t, v in load_valuations().items():
+        if v.get("stance"):
+            out[t] = {"stance": v["stance"], "note": v.get("stance_note", ""),
+                      "src": v.get("stance_src", ""), "as_of": v.get("stance_as_of", "")}
+    return out
+
+
+def stance_of(ticker: str) -> dict | None:
+    return stances().get(ticker)
+
+
 def asymmetry(bull, bear, price) -> dict:
     """Asymmetry = (bull - price) / (price - bear).
 

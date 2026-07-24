@@ -26,9 +26,15 @@ def _key() -> bytes | None:
     return None
 
 
+SHARED_FIELDS = ("bull", "bear", "stance", "stance_note", "stance_src", "stance_as_of")
+
+
 def _bull_bear_only(data: dict) -> dict:
-    """Strip to {ticker: {bull, bear}} — never encrypt the reasoning notes."""
-    return {k: {"bull": v.get("bull"), "bear": v.get("bear")}
+    """Strip to {ticker: {bull, bear, stance...}} — the long `note` reasoning is
+    never encrypted. Stance fields ride along so the hosted dashboard can show
+    the analyst-sourced sentiment without it ever sitting in the public repo as
+    plaintext."""
+    return {k: {f: v.get(f) for f in SHARED_FIELDS}
             for k, v in data.items() if not k.startswith("_")}
 
 
