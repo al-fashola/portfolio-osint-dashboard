@@ -7,7 +7,7 @@
       "end": "2026-08-25",
       "location": "Palo Alto — Stanford (Memorial Auditorium)",
       "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "GFS"],
-      "watch": "Dates/venue re-confirmed 2026-07-24 (Memorial Auditorium, Stanford; hybrid virtual/in-person). Chip architects from NVIDIA, AMD, Intel, IBM, Arm and Fujitsu present real silicon behind AI training/inference — GPU platforms, AI accelerators, memory, networking and interconnect — usually months before products ship. No specific speaker lineup/agenda published yet as of this scan. Deep-dive architecture disclosures from the major silicon vendors — often first technical detail on next-gen accelerators, custom ASICs, chiplet/packaging and interconnect. Read-through for the whole compute complex and the foundries (TSM, GFS) that build it.",
+      "watch": "Re-checked 2026-07-27: ~25 detailed technical presentations confirmed from chip architects at AMD, Intel, NVIDIA, Google and others (plus IBM, Arm, Fujitsu), two tutorials, two keynotes. Full agenda/speaker names still not itemized as of this scan. Deep-dive architecture disclosures from the major silicon vendors — often first technical detail on next-gen accelerators, custom ASICs, chiplet/packaging and interconnect. Read-through for the whole compute complex and the foundries (TSM, GFS) that build it.",
       "source": "https://hotchips.org/",
       "confidence": "confirmed"
     },
@@ -16,8 +16,8 @@
       "start": "2026-09-15",
       "end": "2026-09-17",
       "location": "Santa Clara Convention Center, CA",
-      "tickers": ["NVDA", "AVGO", "MRVL", "META", "WULF"],
-      "watch": "Newly identified during the 2026-07-22 conference refresh. 8,000+ engineers/technical leaders across 5 tracks: Compute, Data Movement, Physical AI, Data & Models, AI Data Center. Broader and more technical-buildout-focused than a single-vendor product launch — read-through for the whole compute/networking/datacenter-infra complex (NVDA, AVGO, MRVL) and for WULF's HPC-conversion and META's capex narratives via the AI Data Center track. Falls 5 days before ECOC 2026, inside the same September AI-infra catalyst window.",
+      "tickers": ["NVDA", "AVGO", "MRVL", "META", "WULF", "INTC"],
+      "watch": "Speaker list expanded to 400+ as of 2026-07-27 scan (8,000+ attendees, 300+ sessions, 8 stages) across 5 tracks: Compute, Data Movement, Physical AI, Data & Models, AI Data Center. Named speakers now include Lip-Bu Tan (CEO, Intel) and Dave Lazovsky (EVP, Marvell) on the main stage, plus Jeff Dean (Google), Kripa Krishnan (VP, Meta AI Infrastructure) — direct read-through for INTC and MRVL specifically, not just the thematic complex, alongside NVDA/AVGO/WULF/META exposure already logged. Falls 5 days before ECOC 2026, inside the same September AI-infra catalyst window.",
       "source": "https://www.ai-infra-summit.com/",
       "confidence": "confirmed"
     },
