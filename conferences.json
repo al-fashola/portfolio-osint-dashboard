@@ -7,7 +7,7 @@
       "end": "2026-08-25",
       "location": "Palo Alto — Stanford (Memorial Auditorium)",
       "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "GFS"],
-      "watch": "Re-checked 2026-07-27: ~25 detailed technical presentations confirmed from chip architects at AMD, Intel, NVIDIA, Google and others (plus IBM, Arm, Fujitsu), two tutorials, two keynotes. Full agenda/speaker names still not itemized as of this scan. Deep-dive architecture disclosures from the major silicon vendors — often first technical detail on next-gen accelerators, custom ASICs, chiplet/packaging and interconnect. Read-through for the whole compute complex and the foundries (TSM, GFS) that build it.",
+      "watch": "Re-checked 2026-07-28: named talks now published. NVDA (5 talks): Vera CPU, Rubin GPU ('Driving the Era of Agentic AI'), BlueField-4 (AI Factory OS), Spectrum-X multiplane networking, and a heterogeneous GPU-LPU ('LPX') design. AVGO (1 talk): 'Thor Ultra' Ethernet NIC for AI/HPC. AMD (4 talks, non-watchlist but competitive read-through): Instinct MI400 architecture + system design, a physical-AI/mission-critical secure SoC, Versal RF. Keynote: Daniel Rosenband (Waymo) on autonomous-driving compute. MRVL, TSM and GFS have NO confirmed presentations as of this scan — thinner direct read-through for those three than the thematic framing implied; they remain relevant only as the interconnect/foundry layer under NVDA/AVGO/AMD's disclosed silicon, not via their own talks. Two tutorials/second keynote still unnamed.",
       "source": "https://hotchips.org/",
       "confidence": "confirmed"
     },
