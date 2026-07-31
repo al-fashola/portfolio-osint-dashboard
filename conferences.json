@@ -7,7 +7,7 @@
       "end": "2026-08-25",
       "location": "Palo Alto — Stanford (Memorial Auditorium)",
       "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "GFS"],
-      "watch": "Re-checked 2026-07-28: named talks now published. NVDA (5 talks): Vera CPU, Rubin GPU ('Driving the Era of Agentic AI'), BlueField-4 (AI Factory OS), Spectrum-X multiplane networking, and a heterogeneous GPU-LPU ('LPX') design. AVGO (1 talk): 'Thor Ultra' Ethernet NIC for AI/HPC. AMD (4 talks, non-watchlist but competitive read-through): Instinct MI400 architecture + system design, a physical-AI/mission-critical secure SoC, Versal RF. Keynote: Daniel Rosenband (Waymo) on autonomous-driving compute. MRVL, TSM and GFS have NO confirmed presentations as of this scan — thinner direct read-through for those three than the thematic framing implied; they remain relevant only as the interconnect/foundry layer under NVDA/AVGO/AMD's disclosed silicon, not via their own talks. Two tutorials/second keynote still unnamed.",
+      "watch": "Re-checked 2026-07-31: no material change since the 07-30 pass — official program still shows speaker names attached to essentially all previously-listed talks. NVDA (5 talks): Vera CPU (Jonathon Evans & Polychronis Xekalakis); Rubin GPU 'Driving the Era of Agentic AI' (Manas Mandal, Rajballav Dash & Ravi Manyam); BlueField-4 (Idan Burstein); Spectrum-X multiplane networking (Gilad Shainer); the heterogeneous GPU-LPU design is titled 'Think Fast' LPU accelerator (Igor Arsovski & Santosh Raghavan). AVGO (1 talk): Thor Ultra Ethernet NIC (Hemal Shah). AMD (4 talks, non-watchlist but competitive read-through): MI400 architecture (Alan Smith & Maiyuran Subramaniam), MI400 system architecture (Steve Scott, David Riddoch & Krishna Doddapaneni), secure SoC (Jaideep Dastidar & Thomas To), Versal RF (Jeff Cuppett). Keynote confirmed: Daniel Rosenband (Waymo), 'Compute in Motion: Challenges of Autonomous Driving.' Second keynote still unnamed. Two tutorials now have topics (memory technology & AI data requirements; RISC-V standards and adoption) but speakers still TBD. MRVL, TSM, GFS: still NO confirmed talks in the official program — read-through for those three remains indirect (foundry/interconnect layer under NVDA/AVGO/AMD silicon), unchanged from prior note. Also present, non-watchlist context: Google 8th-gen TPU, Meta MTIA. 23 days out.",
       "source": "https://hotchips.org/",
       "confidence": "confirmed"
     },
@@ -69,6 +69,36 @@
       "tickers": ["NVDA", "AVGO", "MRVL", "TSM", "SIVE.ST", "SIVEF", "SOI.PA", "SLOIF"],
       "watch": "NVIDIA's flagship — next-gen architecture (post-Rubin) roadmap, networking (NVLink/Spectrum), and increasingly CPO/optics partners. The single biggest AI-infra catalyst of the year; read-through across the entire watchlist, especially the optics chain if NVDA advances co-packaged optics.",
       "source": "https://www.nvidia.com/gtc/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "SEMICON Taiwan 2026",
+      "start": "2026-09-02",
+      "end": "2026-09-04",
+      "location": "Taipei Nangang Exhibition Center, Taiwan",
+      "tickers": ["TSM", "GFS"],
+      "watch": "Added 2026-07-30: major Asia-Pacific fab-equipment/WFE show, ~5 days after AI Infra Summit and ~2.5 weeks before ECOC — same September AI-infra/semi catalyst cluster. 2026 program spans 13 themes incl. AI chips, advanced packaging, 3DIC, chiplets, heterogeneous integration; watch for TSMC capacity/pricing commentary and equipment-order read-through.",
+      "source": "https://www.semicontaiwan.org/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "IEDM 2026 (72nd IEEE International Electron Devices Meeting)",
+      "start": "2026-12-12",
+      "end": "2026-12-16",
+      "location": "Hilton Union Square, San Francisco",
+      "tickers": ["TSM", "INTC", "GFS", "SOI.PA", "SLOIF"],
+      "watch": "Added 2026-07-30: premier device-physics/process-tech conference, theme 'Devices at the Heart of the Intelligence Revolution.' Expect next-node transistor (GAA/CFET) and advanced-packaging/substrate papers directly relevant to Soitec's SOI/substrate roadmap plus TSM/INTC/GFS process roadmaps. Detailed accepted-paper program not yet released; dates flagged 'subject to change' by some listings — verify closer to the event.",
+      "source": "https://www.ieee-iedm.org/",
+      "confidence": "approx"
+    },
+    {
+      "name": "OFC 2027 (Optical Fiber Communication Conference & Exposition)",
+      "start": "2027-03-07",
+      "end": "2027-03-11",
+      "location": "Los Angeles Convention Center",
+      "tickers": ["SIVE.ST", "SIVEF", "SOI.PA", "SLOIF", "MRVL", "AVGO"],
+      "watch": "Added 2026-07-30: the largest global optics show — the semiannual bookend to ECOC for CPO/transceiver/InP-laser roadmap disclosures (1.6T/3.2T transceivers, co-packaged optics), directly feeding the Sivers/Soitec thesis.",
+      "source": "https://www.ofcconference.org/",
       "confidence": "confirmed"
     }
   ]
