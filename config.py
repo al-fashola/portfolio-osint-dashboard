@@ -34,6 +34,12 @@ TICKERS = {
     "TSM":      {"name": "Taiwan Semiconductor Manufacturing", "query": '"Taiwan Semiconductor"',  "us_ticker": "TSM"},
     "SPCX":     {"name": "Space Exploration Technologies (SpaceX)", "query": '"SpaceX"',           "us_ticker": "SPCX"},
     "INTC":     {"name": "Intel",                            "query": '"Intel"',                 "us_ticker": "INTC"},
+    # --- memory + optics additions 2026-08-03 (user request) ---
+    "AAOI":     {"name": "Applied Optoelectronics",           "query": '"Applied Optoelectronics"', "us_ticker": "AAOI"},
+    "000660.KS":{"name": "SK hynix (KRX)",                    "query": '"SK hynix"',              "us_ticker": None},
+    "MU":       {"name": "Micron Technology",                 "query": '"Micron"',                "us_ticker": "MU"},
+    "DRAM":     {"name": "Roundhill Memory ETF",              "query": '"memory chip" OR "DRAM market"', "us_ticker": None},
+    "DISK":     {"name": "Tema Memory ETF (holds CXMT)",      "query": '"CXMT" OR "ChangXin Memory"', "us_ticker": None},
 }
 
 # Macro context instruments — tracked for the digest/dashboard "considerations"
