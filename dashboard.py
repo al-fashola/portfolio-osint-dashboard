@@ -181,6 +181,44 @@ with tab_overview:
                 st.markdown(s["note"])
                 st.caption(f"{s['src']} · as of {s['as_of']}")
 
+    st.subheader("🧮 Fair value & discipline — the five equations")
+    st.caption(
+        "Time-value-of-money view of your own scenario values. **FV today** = present value of "
+        "YOUR bull case at a 10%/yr hurdle over 3 years (PV = FV ÷ (1+r)ⁿ). **Req CAGR** = the "
+        "compound rate today's price must achieve to reach bull. **Doubles in** = Rule of 72. "
+        "**Real** = after 3% inflation. **→bear** = annualised path to your bear value. These are "
+        "mechanical transforms of numbers you set — not advice, not price targets."
+    )
+    try:
+        import fairvalue
+        _px = {t2: a["price"] for t2, a in asyms.items() if a.get("price")}
+        import signals as _sig
+        _fv = fairvalue.evaluate_all(_sig.load_valuations(), _px)
+    except Exception as e:
+        _fv = {}
+        st.info(f"Fair-value engine unavailable: {e}")
+    if _fv:
+        import pandas as _pd
+        rows = []
+        for t2, r in sorted(_fv.items(), key=lambda kv: -(kv[1]["gap_vs_price"] or -9)):
+            rows.append({
+                "Ticker": t2, "Price": round(r["price"], 2),
+                "FV today": round(r["fair_value_today"], 2),
+                "vs px %": round((r["gap_vs_price"] or 0) * 100, 1),
+                "Req CAGR %": round((r["required_cagr"] or 0) * 100, 1),
+                "Doubles (y)": round(r["doubling_years"], 1) if r["doubling_years"] else None,
+                "Real %": round((r["real_cagr"] or 0) * 100, 1),
+                "→bear %": round(r["downside_cagr"] * 100, 1) if r["downside_cagr"] else None,
+            })
+        st.dataframe(_pd.DataFrame(rows), width="stretch", hide_index=True, height=420)
+        flagged = {t2: r for t2, r in _fv.items() if r["flags"]}
+        if flagged:
+            st.markdown("**⚠️ Cautions — what your own numbers imply**")
+            for t2, r in sorted(flagged.items()):
+                with st.expander(f"{t2} — {len(r['flags'])} flag(s)"):
+                    for f in r["flags"]:
+                        st.markdown(f"- {f}")
+
     st.subheader("⚖️ Asymmetry — (bull − price) ÷ (price − bear)")
     have_own = [a for a in asyms.values() if a["mine"]["status"] != "undefined"
                 or a["bull"] is not None or a["bear"] is not None]

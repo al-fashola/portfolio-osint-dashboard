@@ -41,6 +41,7 @@ TICKERS = {
     "DRAM":     {"name": "Roundhill Memory ETF",              "query": '"memory chip" OR "DRAM market"', "us_ticker": None},
     "DISK":     {"name": "Tema Memory ETF (holds CXMT)",      "query": '"CXMT" OR "ChangXin Memory"', "us_ticker": None},
     "SKHY":     {"name": "SK hynix (US listing)",             "query": '"SK hynix"',              "us_ticker": None},
+    "TSEM":     {"name": "Tower Semiconductor",               "query": '"Tower Semiconductor"',   "us_ticker": "TSEM"},
 }
 
 # Macro context instruments — tracked for the digest/dashboard "considerations"
