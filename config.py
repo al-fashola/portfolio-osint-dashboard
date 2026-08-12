@@ -42,6 +42,8 @@ TICKERS = {
     "DISK":     {"name": "Tema Memory ETF (holds CXMT)",      "query": '"CXMT" OR "ChangXin Memory"', "us_ticker": None},
     "SKHY":     {"name": "SK hynix (US listing)",             "query": '"SK hynix"',              "us_ticker": None},
     "TSEM":     {"name": "Tower Semiconductor",               "query": '"Tower Semiconductor"',   "us_ticker": "TSEM"},
+    "IBIDY":    {"name": "Ibiden (unsponsored ADR, OTC)",      "query": '"Ibiden"',                "us_ticker": None},
+    "4062.T":   {"name": "Ibiden (Tokyo primary)",             "query": '"Ibiden"',                "us_ticker": None},
 }
 
 # Macro context instruments — tracked for the digest/dashboard "considerations"
