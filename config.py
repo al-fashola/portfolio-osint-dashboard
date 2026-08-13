@@ -44,6 +44,8 @@ TICKERS = {
     "TSEM":     {"name": "Tower Semiconductor",               "query": '"Tower Semiconductor"',   "us_ticker": "TSEM"},
     "IBIDY":    {"name": "Ibiden (unsponsored ADR, OTC)",      "query": '"Ibiden"',                "us_ticker": None},
     "4062.T":   {"name": "Ibiden (Tokyo primary)",             "query": '"Ibiden"',                "us_ticker": None},
+    # --- NAND/HBF addition 2026-08-13 (user request) ---
+    "SNDK":     {"name": "Sandisk Corporation",                "query": '"Sandisk"',               "us_ticker": "SNDK"},
 }
 
 # Macro context instruments — tracked for the digest/dashboard "considerations"
