@@ -181,6 +181,35 @@ with tab_overview:
                 st.markdown(s["note"])
                 st.caption(f"{s['src']} · as of {s['as_of']}")
 
+    st.subheader("⚡ Trade desk — short-horizon calls (other people's positions)")
+    st.caption(
+        "Directional calls published by the trade-tier accounts, recorded with date and level so "
+        "they are **falsifiable**. These are other people's positions — not recommendations and not "
+        "this system's view. Several of these accounts sell alerts or subscriptions; weight "
+        "accordingly. Short-horizon calls are deliberately kept separate from the long-horizon theses."
+    )
+    try:
+        import tradedesk as _tdm, signals as _sg2
+        _stn = {k: {"stance": v.get("stance")} for k, v in _sg2.load_valuations().items()}
+        _tds = _tdm.summary(_stn)
+    except Exception as e:
+        _tds = None
+        st.info(f"Trade desk unavailable: {e}")
+    if _tds and _tds["calls"]:
+        if _tds["conflicts"]:
+            st.markdown("**🔴 Where the trade tier contradicts your research**")
+            for c in _tds["conflicts"]:
+                st.warning(f"**{c['ticker']}** — {c['account']} is **{c['direction']}** while your "
+                           f"research stance is **{c['stance']}**. {c.get('conflict','')}")
+        for c in _tds["open"]:
+            lvl = f" · level {c['level']} ({c.get('level_type','')})" if c.get("level") else ""
+            with st.expander(f"{c['ticker']} — {c['direction']} · {c['account']} · {c['date']}{lvl}"):
+                st.markdown(f"> {c['quote']}")
+                if c.get("conflict"):
+                    st.caption(c["conflict"])
+        st.caption("Scoreboard (measured, not claimed): " +
+                   " · ".join(f"{a}: {v['hit']} hit / {v['open']} open" for a, v in _tds["scoreboard"].items()))
+
     st.subheader("🧮 Fair value & discipline — the five equations")
     st.caption(
         "Time-value-of-money view of your own scenario values. **FV today** = present value of "
