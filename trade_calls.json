@@ -1,0 +1,34 @@
+{
+  "_README": "SHORT-HORIZON DIRECTIONAL CALLS made publicly by the trade-tier accounts in sources/analysts.md (@__Con_, @Brownmoose). Recorded verbatim-in-substance, attributed and dated, WITH THE SPECIFIC LEVEL where one was given — so each call is falsifiable and the track record gets MEASURED rather than claimed. These are other people's published positions, not recommendations, and not this system's view. 'status': open | hit | invalidated | expired. The routine appends new calls and updates status; it must never invent a call or a level.",
+  "calls": [
+    {
+      "ticker": "NBIS", "account": "@Brownmoose", "date": "2026-08-18",
+      "direction": "SHORT", "level": 233, "level_type": "first cover target",
+      "quote": "$NBIS SHORT PRINTING? Alright we staying in the short, lot of the subs are riding this one with me, ideally $233 level hit for first closing.",
+      "status": "open",
+      "conflict": "DIRECT CONFLICT with the research stance: NBIS is 'Bullish' in valuations.json on @ren_stocks (Vera Rubin NVL72 deploying ahead of feared delays, 'parabolic' neocloud demand) plus NVDA's 9.3% stake. A short-horizon trader is positioned against the research thesis on the same name."
+    },
+    {
+      "ticker": "MU", "account": "@Brownmoose", "date": "2026-08-18",
+      "direction": "WATCH / level test", "level": null, "level_type": "EMA-200 retest",
+      "quote": "$MU Alright LEVEL 1 hitting. Pay attention to this level. There will most likely have some buyer stepping in to defend it. Next step if we get a weak bounce we will finally come back to the waited ema-200 retest we been waiting for. Stop following hype.",
+      "status": "open",
+      "conflict": "No research stance to contradict — MU is 'No follow coverage' in your book (it appears only as a reference point in @jukan05's YMTC share note). This is currently your ONLY directional input on MU."
+    },
+    {
+      "ticker": "_SECTOR_AI", "account": "@__Con_", "date": "2026-08-17",
+      "direction": "ROTATION — out of AI beneficiaries, into AI enablers", "level": null,
+      "level_type": "thematic rotation",
+      "quote": "I'm closing my trades on AI beneficiaries. On the short term, I think the 'what AI powers -> towards what powers AI' trade is about to take place. AI beneficiaries have ran a ton so far.",
+      "status": "open",
+      "conflict": "Tension with @citrini's Macro Memo (medium-term bullish equities, selloff was 'an overdue flush of extreme leverage', melt-up into late summer) and with @GavinSBaker via @patrick_oshag ('no sign of a slowdown on the ground'). NOTE the direction of the rotation FAVOURS your book: you are overwhelmingly positioned in enablers (TSM, AVGO, MRVL, SIVE, SOI, IBIDY, TSEM, memory) rather than beneficiaries."
+    },
+    {
+      "ticker": "_SECTOR_AI", "account": "@__Con_", "date": "2026-07-29",
+      "direction": "LONG", "level": null, "level_type": "bottom call",
+      "quote": "Most AI stocks are down -50% from all time highs, with some at even -75%, yet people aren't buying... a generational wealth buying opportunity.",
+      "status": "hit",
+      "conflict": "Called near the late-July lows; the complex did rally materially into mid-August (AAOI, NBIS, MU, SPCX all sharply higher). Recorded as HIT on direction. CAVEAT: he advertises the winners only, without entries, exits or losers, so a scored hit here is not a validated track record."
+    }
+  ]
+}
