@@ -45,6 +45,8 @@ TICKERS = {
     "IBIDY":    {"name": "Ibiden (unsponsored ADR, OTC)",      "query": '"Ibiden"',                "us_ticker": None},
     "4062.T":   {"name": "Ibiden (Tokyo primary)",             "query": '"Ibiden"',                "us_ticker": None},
     "CIEN":     {"name": "Ciena",                              "query": '"Ciena"',                 "us_ticker": "CIEN"},
+    "LITE":     {"name": "Lumentum Holdings",                  "query": '"Lumentum"',              "us_ticker": "LITE"},
+    "COHR":     {"name": "Coherent Corp",                      "query": '"Coherent Corp" OR "Coherent optical"', "us_ticker": "COHR"},
     # --- NAND/HBF addition 2026-08-13 (user request) ---
     "SNDK":     {"name": "Sandisk Corporation",                "query": '"Sandisk"',               "us_ticker": "SNDK"},
 }
