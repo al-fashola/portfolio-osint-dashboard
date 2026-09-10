@@ -58,9 +58,12 @@
         "SOI.PA",
         "SLOIF",
         "MRVL",
-        "AVGO"
+        "AVGO",
+        "COHR",
+        "LITE",
+        "CIEN"
       ],
-      "watch": "THE optics event for the small-caps: CPO (co-packaged optics), 800G/1.6T transceivers, EML/DFB laser and InP-substrate progress. Direct catalyst window for Sivers (CPO lasers) and Soitec (photonics substrates); DSP/optics read-through for MRVL & AVGO. Lumentum/Coherent disclosures here reset the whole InP supply picture.",
+      "watch": "THE optics event for the small-caps: CPO (co-packaged optics), 800G/1.6T transceivers, EML/DFB laser and InP-substrate progress. Direct catalyst window for Sivers (CPO lasers) and Soitec (photonics substrates); DSP/optics read-through for MRVL & AVGO. Lumentum/Coherent disclosures here reset the whole InP supply picture. **Re-verified 2026-09-08 (week's first run) — 12 days out and inside the 14-day window.** Dates and venue confirmed at source and via trade listings: **conference 20-24 Sep, exhibition floor 21-23 Sep, Málaga, Spain** (note the split — the exhibition is only the middle three days, so vendor announcements cluster Sep 21-23, not Sep 20). **The Market Focus programme is the sharpening that matters this pass:** published themes are **scale-up vs scale-out architectures, co-packaged optics, silicon photonics, photonics packaging, optical interconnects, laser innovation, and 'beyond 1.6T'**, with dedicated sessions on components/ICs/PICs/fibre and on the optical future of AI infrastructure. **Named Market Focus contributors include Coherent, Lumentum, Ciena, Credo, Source Photonics, Cisco, Corning, Adtran, Huawei, China Telecom and 1Finity** — so COHR, LITE and CIEN each have a speaking presence, not merely a booth, which is what makes the standing note's 'Lumentum/Coherent disclosures reset the InP supply picture' testable this year rather than assumed. 'Laser innovation' as its own named track is the direct SIVE.ST/SIVEF read (InP CW DFB for CPO light sources) and pairs with the CIOE (Sep 9-11) China read two weeks earlier — same layer, two very different sources of evidence. **Calibrate: a conference-plus-trade-show, so expect roadmap, papers and product positioning, not guidance; nothing scheduled here adjudicates a falsifier.** It overlaps GTS Taiwan (Sep 24), so optics-relevant disclosure from both lands in the same window.",
       "source": "https://www.ecocexhibition.com/",
       "confidence": "confirmed"
     },
