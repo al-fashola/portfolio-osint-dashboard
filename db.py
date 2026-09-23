@@ -36,6 +36,17 @@ CREATE TABLE IF NOT EXISTS runs (
     ts TEXT NOT NULL               -- ISO timestamp of pipeline run
 );
 
+-- Per-stage timings for one run. Written by run_daily.py so pipeline health
+-- can be monitored (Grafana reads this); one row per stage per run.
+CREATE TABLE IF NOT EXISTS run_steps (
+    run_ts     TEXT NOT NULL,
+    step       TEXT NOT NULL,
+    duration_s REAL,
+    ok         INTEGER,            -- 1 success, 0 failure
+    error      TEXT,
+    PRIMARY KEY (run_ts, step)
+);
+
 CREATE TABLE IF NOT EXISTS insider_tx (
     accession TEXT NOT NULL,
     ticker    TEXT NOT NULL,
@@ -175,10 +186,30 @@ CREATE TABLE IF NOT EXISTS financials (
 """
 
 
+# Columns added to `runs` after the table shipped. CREATE TABLE IF NOT EXISTS
+# will not add them to an existing database, so widen it explicitly on connect.
+_RUNS_ADDED_COLUMNS = {
+    "duration_s": "REAL",     # wall-clock seconds for the whole run
+    "status": "TEXT",         # ok | partial | failed
+    "failures": "INTEGER",    # count of stages that raised
+    "alerts": "INTEGER",      # alerts produced by the run
+    "runner": "TEXT",         # local | cloud (best-effort)
+}
+
+
+def _migrate(conn) -> None:
+    have = {r[1] for r in conn.execute("PRAGMA table_info(runs)")}
+    for col, decl in _RUNS_ADDED_COLUMNS.items():
+        if col not in have:
+            conn.execute(f"ALTER TABLE runs ADD COLUMN {col} {decl}")
+    conn.commit()
+
+
 def connect(check_same_thread: bool = True) -> sqlite3.Connection:
     conn = sqlite3.connect(DB_PATH, check_same_thread=check_same_thread)
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
+    _migrate(conn)
     return conn
 
 
@@ -205,8 +236,25 @@ def upsert_news(conn, rows):
     conn.commit()
 
 
-def record_run(conn, ts: str):
-    conn.execute("INSERT INTO runs (ts) VALUES (?)", (ts,))
+def record_run(conn, ts: str, *, duration_s=None, status=None,
+               failures=None, alerts=None, runner=None):
+    """Record a pipeline run. Every field but `ts` is optional so older
+    callers keep working; run_daily.py fills them in."""
+    conn.execute(
+        "INSERT INTO runs (ts, duration_s, status, failures, alerts, runner) "
+        "VALUES (?,?,?,?,?,?)",
+        (ts, duration_s, status, failures, alerts, runner),
+    )
+    conn.commit()
+
+
+def record_run_steps(conn, run_ts: str, rows):
+    """rows: (step, duration_s, ok, error) tuples for one run."""
+    conn.executemany(
+        "INSERT OR REPLACE INTO run_steps (run_ts, step, duration_s, ok, error) "
+        "VALUES (?,?,?,?,?)",
+        [(run_ts, st, d, ok, err) for st, d, ok, err in rows],
+    )
     conn.commit()
 
 
