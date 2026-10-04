@@ -3,6 +3,8 @@ import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import db
+
 from config import (
     TICKERS,
     PRICE_MOVE_ALERT_PCT,
@@ -553,6 +555,19 @@ def build_alerts(conn) -> list[dict]:
             add(None, "trade",
                 f"🚢 {arrow} **{t['reporter']}** HS {t['hs_code']} exports {t['yoy']:+.0f}% YoY "
                 f"({fmt_usd(t['value'])} in {t['period']})")
+
+    # NBIS falsifier 3 instrument: Nebius changed its public GPU price band.
+    labels = {"spot_floor": "spot floor", "on_demand": "on-demand", "spot_current": "spot price"}
+    # Alert only off a fresh snapshot (it is weekly) — otherwise one change would
+    # re-alert on every daily run until the next snapshot lands.
+    fresh_after = (datetime.now(timezone.utc) - timedelta(days=2)).date().isoformat()
+    for c in db.nebius_price_changes(conn):
+        if c["date"] < fresh_after:
+            continue
+        arrow = "▲" if (c["after"] or 0) > (c["before"] or 0) else "▼"
+        add("NBIS", "nebius_price",
+            f"🏷️ {arrow} **Nebius {c['gpu']}** {labels.get(c['metric'], c['metric'])} "
+            f"${c['before']:.2f} → ${c['after']:.2f}/GPU-hr (since {c['since']})")
 
     return alerts
 

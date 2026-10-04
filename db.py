@@ -36,6 +36,17 @@ CREATE TABLE IF NOT EXISTS runs (
     ts TEXT NOT NULL               -- ISO timestamp of pipeline run
 );
 
+-- Nebius public GPU price band (fetch_nebius.py): spot floor + on-demand rate per GPU,
+-- one snapshot per weekly fetch. The live spot price itself is console-only.
+CREATE TABLE IF NOT EXISTS nebius_gpu_prices (
+    date   TEXT NOT NULL,
+    gpu    TEXT NOT NULL,
+    metric TEXT NOT NULL,          -- spot_floor | spot_current | on_demand
+    price  REAL,                   -- USD per GPU-hour
+    raw    TEXT,                   -- the cell as published, for audit
+    PRIMARY KEY (date, gpu, metric)
+);
+
 -- Per-stage timings for one run. Written by run_daily.py so pipeline health
 -- can be monitored (Grafana reads this); one row per stage per run.
 CREATE TABLE IF NOT EXISTS run_steps (
@@ -246,6 +257,28 @@ def record_run(conn, ts: str, *, duration_s=None, status=None,
         (ts, duration_s, status, failures, alerts, runner),
     )
     conn.commit()
+
+
+def upsert_nebius_prices(conn, rows):
+    conn.executemany(
+        "INSERT OR REPLACE INTO nebius_gpu_prices (date, gpu, metric, price, raw) "
+        "VALUES (?,?,?,?,?)", rows)
+    conn.commit()
+
+
+def nebius_price_changes(conn) -> list[dict]:
+    """Price points that differ between the two most recent snapshots."""
+    dates = [r[0] for r in conn.execute(
+        "SELECT DISTINCT date FROM nebius_gpu_prices ORDER BY date DESC LIMIT 2")]
+    if len(dates) < 2:
+        return []
+    new, old = dates
+    q = ("SELECT n.gpu, n.metric, o.price AS before, n.price AS after "
+         "FROM nebius_gpu_prices n JOIN nebius_gpu_prices o "
+         "ON o.gpu = n.gpu AND o.metric = n.metric AND o.date = ? "
+         "WHERE n.date = ? AND n.price IS NOT o.price")
+    return [{"gpu": g, "metric": m, "before": b, "after": a, "since": old, "date": new}
+            for g, m, b, a in conn.execute(q, (old, new))]
 
 
 def record_run_steps(conn, run_ts: str, rows):
