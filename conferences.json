@@ -2,44 +2,53 @@
   "_README": "Industry events / semiconductor conferences that can move watchlist names via product announcements, roadmap disclosures, or competitive read-through. The morning routine (CLAUDE.md) refreshes dates and 'watch' notes via web search each run and adds newly-announced events. 'tickers' = watchlist symbols with direct or read-through exposure. 'partners' = KEY PRIVATE/NON-WATCHLIST COMPANIES whose appearances matter because a holding depends on them (e.g. Ayar Labs is Sivers' flagship CPO customer; Lightmatter is the CPO peer benchmark). ADDED 2026-08-07 after OCP APAC was missed: relevance must be checked against BOTH tickers and partners, and MAJOR EVENT SERIES HAVE REGIONAL EDITIONS (OCP runs Global + APAC + EMEA; SEMICON runs West/Taiwan/Europe/Korea) — enumerate every edition, not just the flagship. 'confidence': confirmed (dates verified) | approx (typical timing, verify) | rumored. Dates ISO YYYY-MM-DD, event-local. Not investment advice.",
   "events": [
     {
-      "name": "OCP Global Summit 2026 (Open Compute Project)",
-      "start": "2026-10-12",
-      "end": "2026-10-15",
-      "location": "San Jose — McEnery Convention Center",
+      "name": "SEMICON Europa 2026",
+      "start": "2026-11-10",
+      "end": "2026-11-13",
+      "location": "Messe Munchen, Munich",
+      "tickers": [
+        "SOI.PA",
+        "SLOIF",
+        "XFAB.PA",
+        "LPKFF",
+        "TSEM",
+        "IBIDY"
+      ],
+      "watch": "Added 2026-10-21 (calendar had a 52-day hole between today and IEDM). Europe's main semiconductor manufacturing show, co-located with electronica at Messe Munchen. Relevant to the European/specialty side of the book: Soitec SOI + substrate roadmap, X-FAB specialty foundry capacity/pricing, LPKF laser-processing (LIDE) tool commentary, Tower specialty/SiPh capacity, Ibiden substrate. Watch for equipment/materials lead-time and trailing-edge pricing commentary bearing on the specialty-pricing falsifiers. **Program verified 2026-10-29:** dates and venue confirmed (Nov 10-13, Messe Munchen); theme 'Europe's Next Era: Navigating the Perfect Storm' (tech x geopolitics). Tracks worth reading for this book: CxO Summit (CEA-Leti, imec, SCREEN, TRUMPF, Ericsson, Schneider listed) for European capacity/Chips Act 2.0 signalling; ITF 'Chip into the Future' powered by imec on chiplets, sustainable fabs and the NanoIC pilot line (SOI/substrate read-through); Fab Management Forum on autonomous/AI-driven fabs; SEMI Global Standards Summit on Nov 12; Innovation Showcase Nov 13. No keynote speaker list published yet, so no single-name announcement is pre-flagged.",
+      "source": "https://www.semi.org/eu/semicon-europa",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "electronica 2026",
+      "start": "2026-11-10",
+      "end": "2026-11-13",
+      "location": "Messe Munchen, Munich",
+      "tickers": [
+        "VPG",
+        "XFAB.PA",
+        "LPKFF"
+      ],
+      "watch": "Added 2026-10-21. World's largest electronic components trade fair, biennial (even years), co-located with SEMICON Europa; the electronica Automotive Conference runs 2026-11-09, the day before the exhibition opens. Broad components-demand tone-setter rather than an AI-infra event — most relevant to VPG (precision sensors/resistors) and the industrial/automotive end-demand read, plus X-FAB and LPKF customer activity.",
+      "source": "https://electronica.de/en/",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "SC26 (International Conference for High Performance Computing, Networking, Storage, and Analysis)",
+      "start": "2026-11-15",
+      "end": "2026-11-20",
+      "location": "McCormick Place, Chicago",
       "tickers": [
         "NVDA",
         "AVGO",
         "MRVL",
-        "META",
-        "WULF"
+        "CIEN",
+        "COHR",
+        "LITE",
+        "AAOI",
+        "NBIS"
       ],
-      "watch": "Hyperscaler datacenter standards — rack power/cooling, networking fabrics, custom silicon, optics adoption. Meta is a core OCP driver (capex read-through); networking/optics read-through for AVGO & MRVL; datacenter-infrastructure read-through for WULF's HPC-conversion thesis. **Sharpened 2026-10-01 run (11 days out), verified against the now-live official schedule and vendor session listings.** Two specifics worth carrying, because they bear directly on the CPO/NPO framework this book already runs (frameworks.md §3, from @damnang2): (1) the summit carries a **vendor-neutral architecture for front-panel, near-package AND co-packaged optics, defining the MHS tray contract for each class across five dimensions — mechanical, power, high-speed signalling, thermal and management.** That an open standard is being specified to cover all three classes *in parallel* is corroboration of the NPO-and-CPO-coexist-through-2030 read rather than a CPO-displaces-everything read, and it is the socket-standardisation fork the Open CPX MSA entry describes. (2) A dated session: **Tue Oct 13, 4:25pm PT, \"High-Speed Open Silicon Photonics Reference Designs\"**, covering passive-alignment experimental validation, connector/optical-path testing and system integration — i.e. the manufacturability questions (alignment, test) that gate a CPO ramp, which is the AEHR/test read-through. **Calibrate: a standards-and-engineering venue, not a disclosure venue — no guidance, and an MSA or reference design is an intention to build, not a shipment. Nothing here adjudicates a falsifier.** Read-through beyond the listed tickers: optics chain (COHR/LITE/AAOI/SIVE) and GFS silicon photonics. **Re-verified 2026-10-07 run (5 days out): dates, venue and format unchanged at source — Oct 12-15, San Jose McEnery Convention Center.** The 2026 programme is framed around AI-ready high-density infrastructure: GPU platform design, advanced liquid cooling, high-voltage DC distribution and modular datacenter architectures. **New this pass, and it is vendor-published rather than third-party expectation: Marvell has confirmed its own session list, and two of the titles sit directly on this book's open questions — \"Custom HBM for AI accelerators\" and \"Composable Smart Memory Fabric for XPU\", alongside UALink-SAI for AI switches, Observability Loop in SAI and an integrated HSM for server security.** Custom HBM is the content-per-socket argument already logged in the MRVL file (09-25 PhotonCap supplement), so this is the venue where it gets a technical airing — but a conference session is an engineering disclosure, not a segment model, and it does not adjudicate MRVL falsifier 2. Separately, **Lattice Semiconductor (not a watchlist name) delivers a keynote Tue Oct 13, 10:00am PT on a common management/control model for AI infrastructure** — context for the standards-convergence read, no direct read-through. Unchanged calibration: a standards-and-engineering venue, not a disclosure venue. **Re-verified again 2026-10-10 run (2 days out): dates/venue unchanged (Oct 12-15, San Jose McEnery); OCP's own page now also shows the summit SOLD OUT. New and vendor-published this pass, and it lands squarely on the SIVE/optics chain: Lumentum has confirmed its speaker lineup, including **\"External Laser Source Architectures for Deployable CPO-Based AI Networks\" (Tue Oct 14)**, plus a VCSEL panel and a zero-touch optical-circuit-switching fabric talk (Oct 15). ELS architecture is precisely the socket SIVE is competing for, and LITE talking publicly about *deployable* CPO ELS is a read on how near to production that class is — but it is a speaker session, not a product launch or a design-win disclosure, and it adjudicates no SIVE falsifier. Read-through: SIVE, LITE, COHR, AAOI.**",
-      "source": "https://www.opencompute.org/summit/global-summit",
-      "confidence": "confirmed"
-    },
-    {
-      "name": "SEMICON West 2026",
-      "start": "2026-10-13",
-      "end": "2026-10-15",
-      "location": "San Francisco — Moscone Center",
-      "tickers": [
-        "TSM",
-        "GFS"
-      ],
-      "watch": "Dates confirmed 2026-07-22 via the official SEMI organizer site (Pre-Show Day Mon Oct 12, show floor Oct 13-15). Fab-equipment/WFE industry event, almost exactly overlapping the existing OCP Global Summit (Oct 12-15, San Jose) — same catalyst week. Relevant to TSM (leading-edge capacity/pricing commentary) and GFS (specialty-foundry, onshoring/CHIPS Act positioning). **Sharpened 2026-10-10 run (3 days out), verified at SEMI's own release: location is San Francisco/Moscone (a Besi exhibitor page saying \"Moscone Center in Phoenix\" is an error — Phoenix hosted 2025). Programme is framed around the industry's $1T revenue milestone and carries three summits worth noting: a CEO Summit keynote series, an **Advanced Packaging & Heterogeneous Integration Summit**, and a **Test Vision Symposium**. The latter two are the additional read-through this book cares about beyond TSM/GFS — packaging/test capacity and wafer-level test economics are the AEHR and CPO-manufacturability questions. Calibrate: an industry/technical venue, no guidance; no TSMC or GF keynote is named at source as of this pass. Nothing here adjudicates a falsifier.**",
-      "source": "https://www.semiconwest.org/",
-      "confidence": "confirmed"
-    },
-    {
-      "name": "GlobalFoundries Technology Summit (GTS) 2026 — Europe",
-      "start": "2026-10-15",
-      "end": "2026-10-15",
-      "location": "Munich, Germany",
-      "tickers": [
-        "GFS"
-      ],
-      "watch": "**ADDED 2026-09-03 (promoted from the GTS North America entry, whose Sep 2 date has now passed and which was removed this run).** GF's flagship customer/partner technology summit runs as a regional series; per the README's regional-edition rule the remaining 2026 editions each get their own entry as they come inside the 30-day window. **Dates re-verified this run against GF's own GTS page: Shanghai Sep 22, Hsinchu Sep 24, Munich Oct 15.** Format is GF and industry-leader keynotes plus deep dives into GF's differentiated process platforms (RF-SOI, silicon photonics, FD-SOI, automotive/power) and customer/ecosystem results. **Why it matters for GFS: this is where the specialty-foundry case acquires roadmap and design-win evidence bearing on the drivers \"specialty mix defends pricing vs commodity nodes\" and \"silicon photonics becomes a real revenue line as CPO scales\" — it does NOT bear on the pricing-war or utilisation falsifiers.** Secondary read: GF is named in the SIVE thesis as an ecosystem partner (GlobalFoundries reference designs for hyperscalers incl. AMD), so any silicon-photonics platform announcement is a read-through into the CPO chain. **Calibrate honestly: a customer/partner technology event, not an investor day — expect platform and partnership announcements, not guidance, and no session-level agenda is published at source for these editions as of this pass. Nothing here adjudicates a falsifier.** Final edition of the 2026 series. **Note the Oct 15 collision: OCP Global Summit (Oct 12-15) and SEMICON West (Oct 13-15) both overlap it, so GF news that day competes for attention with two larger venues.** 42 days out — outside the 30-day window, carried as a placeholder so the series is not lost.",
-      "source": "https://gf.com/news-and-events/gts/ · https://gf.com/newsroom/events/",
+      "watch": "Added 2026-10-21. The premier HPC/AI-infrastructure show; exhibition floor 2026-11-17 to 11-19, workshops 11-15/16 and 11-20. Historically a venue for interconnect and optics announcements (1.6T/3.2T transceivers, CPO/NPO demos, liquid cooling, scale-up fabric) plus HPC system wins — directly feeds the optics complex (CIEN/COHR/LITE/AAOI) and the NVDA/AVGO/MRVL scale-up roadmap. Also watch neocloud capacity announcements (NBIS).",
+      "source": "https://sc26.supercomputing.org/",
       "confidence": "confirmed"
     },
     {
